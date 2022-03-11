@@ -1,0 +1,2 @@
+# conf
+My config collection
