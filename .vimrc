@@ -29,9 +29,11 @@ call vundle#begin()
   
   " [Themes] "
   " [------------------------------------------
-    Plugin 'dracula/vim'
+  " Plugin 'dracula/vim'
   " Plugin 'morhetz/gruvbox'
   " Plugin 'artanikin/vim-synthwave84'
+    Plugin 'pineapplegiant/spaceduck'
+    Plugin 'ayu-theme/ayu-vim'
   " ------------------------------------------]
 
   " [Coding help] "
@@ -76,7 +78,7 @@ call vundle#begin()
     syntax on
     set termguicolors
     set term=xterm-256color
-    colorscheme dracula
+    colorscheme spaceduck
 " ============================================]
 
 " [Search]
@@ -100,6 +102,9 @@ call vundle#begin()
     " [Save] "
     imap <F2> <Esc>:w<CR>
     map  <F2> <Esc>:w<CR>
+
+    " [Search] "
+    noremap <F12> <Esc>:nohl<CR>
     
     " [Tab new] "
     imap <F4> <Esc>:browse tabnew<CR>
@@ -146,7 +151,7 @@ call vundle#begin()
     endif
 
     let g:lightline = {
-          \ 'colorscheme': 'dracula',
+          \ 'colorscheme': 'spaceduck',
           \ 
           \ 'active': {
           \   'left': [ [ 'mode', 'paste' ],
