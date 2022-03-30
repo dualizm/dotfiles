@@ -5,13 +5,13 @@ static const unsigned int borderpx  = 0;        /* border pixel of windows */
 static const unsigned int snap      = 32;       /* snap pixel */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
-static const char *fonts[]          = { "Hack:size=10", "DejaVuSans:size=10" };
+static const char *fonts[]          = { "Hack:size=10", "Hack Nerd Font Mono:pixelsize=14:antialias=true:autohint=true", "DejaVuSans:size=10" };
 static const char dmenufont[]       = "Hack:size=10";
 static const char col_gray1[]       = "#222222";
 static const char col_gray2[]       = "#444444";
 static const char col_gray3[]       = "#bbbbbb";
 static const char col_gray4[]       = "#eeeeee";
-static const char col_bg[]          = "#3b2d54";
+static const char col_bg[]          = "#592139"; //"#3b2d54";
 static const char *colors[][3]      = {
 	/*               fg         bg         border   */
 	[SchemeNorm] = { col_gray3, col_gray1, col_gray2 },
@@ -20,17 +20,15 @@ static const char *colors[][3]      = {
 };
 
 /* tagging */
-static const char *tags[] = { "www", "term", "dev", "vir", "music", "sys", "speak", "other" };
-enum TAGS {
-  TAG_WWW = 1 << 0,
-  TAG_TERM = 1 << 1,
-  TAG_DEV = 1 << 2,
-  TAG_VIR = 1 << 3,
-  TAG_SYS = 1 << 4,
-  TAG_MUSIC = 1 << 5,
-  TAG_SPEAK = 1 << 6,
-  TAG_OTHER = 1 << 7,
-};
+static const char *tags[] = { "", "ﲵ", "", "", "﫛", "", "",  ""};
+#define TAG_WWW   1 << 0
+#define TAG_TERM  1 << 1
+#define TAG_DEV   1 << 2
+#define TAG_VIR   1 << 3
+#define TAG_SYS   1 << 4
+#define TAG_MUSIC 1 << 5
+#define TAG_SPEAK 1 << 6
+#define TAG_OTHER 1 << 7
 
 static const Rule rules[] = {
 	/* xprop(1):
@@ -38,8 +36,8 @@ static const Rule rules[] = {
 	 *	WM_NAME(STRING) = title
 	 */
 	/* class      instance    title       tags mask     isfloating   monitor */
-	{ "spotify",  NULL,	  NULL,       TAG_MUSIC,    0,            -1 },
-        { "firefox-bin",  NULL,   NULL,       TAG_WWW, 	    0,            -1 },
+	{ "spotify",  NULL,	  NULL,           TAG_MUSIC,    0,            -1 },
+  { "firefox-bin",  NULL,   NULL,       TAG_WWW, 	    0,            -1 },
 	{ "discord",  NULL,       NULL,       TAG_SPEAK,    0,            -1 },
 };
 
@@ -50,9 +48,9 @@ static const int resizehints = 1;    /* 1 means respect size hints in tiled resi
 
 static const Layout layouts[] = {
 	/* symbol     arrange function */
-	{ "[]=",      tile },    /* first entry is default */
-	{ "><>",      NULL },    /* no layout function means floating behavior */
-	{ "[M]",      monocle },
+	{ "ﱖ",      tile },    /* first entry is default */
+	{ "",      NULL },    /* no layout function means floating behavior */
+	{ "",      monocle },
 };
 
 /* key definitions */
@@ -72,7 +70,7 @@ static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() 
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_bg, "-sf", col_gray4, NULL };
 static const char *termcmd[]  = { "alacritty", NULL };
 static const char *firefox[] = { "firefox-bin", NULL};
-static const char *screenshoot[] = { "scrot", "%I:%M:%S_%d:%Y_screen.png", "-e", "mv $f ~/Screenshots/", NULL };
+static const char *screenshoot_area[] = { "scrot", "%d_%Y_%I:%M:%S_screen.png", "-e", "mv $f ~/Screenshots/", "--select", NULL };
 static const char *spotify[] = { "spotify", NULL };
 
 static Key keys[] = {
@@ -82,7 +80,8 @@ static Key keys[] = {
 
 	// My binds
 	{ MODKEY|AltMask,               XK_w,      spawn,          {.v = firefox } },
-	{ MODKEY|AltMask,               XK_o,      spawn,          {.v = screenshoot } },
+	{ MODKEY|AltMask,               XK_o,      spawn,          SHCMD("maim ~/Screenshots/`date +\"%d_%I:%M:%S_%Y\"`_screen.png") },
+	{ MODKEY|AltMask,               XK_p,      spawn,          SHCMD("maim -s ~/Screenshots/`date +\"%d_%I:%M:%S_%Y\"`_screen.png") },
 	{ MODKEY|AltMask,               XK_m,      spawn,          {.v = spotify } },
 
 	{ MODKEY,                       XK_b,      togglebar,      {0} },

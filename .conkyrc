@@ -13,5 +13,7 @@ conky.config = {
 }
 
 conky.text = [[
-❬ 🐑 $memperc% ❬ $uptime ❬ ⌨ ${exec check_keymap.sh } ❬ ⏰ ${exec date "+%R %x"} 
+ 🐑 $memperc%  $uptime  ${exec check_ethernet.sh}  ⌨ ${exec check_keymap.sh }  ⏰ ${exec date "+%R %x"} 
 ]]
+
+
