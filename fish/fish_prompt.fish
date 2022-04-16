@@ -15,7 +15,7 @@ function random_color_char
   end
 end
 
-# set color random
+# set color num
 function scr # take 1 arg
   switch $argv[1]
   case 1
@@ -51,8 +51,10 @@ function user_log # take 1 arg
     printf "]─"
 end
 
-function fish_prompt
-
+function user_prompt_one #no args
+# Printing
+# ┌▶◀[ [ezi]─[BORiS] ]▶ ◀[ ~ ]▶
+# └─▶
   set -l user_char '▶'
   if fish_is_root_user
       set user_char '▷'
@@ -67,5 +69,41 @@ function fish_prompt
 
   set -l second_line  "└─$user_char "(set_color normal)
   echo $left_smbl $info_user $middle_smbl $way $right_smbl \n $second_line
+end
 
+function user_prompt_two
+# Printing
+# ◀[ ezi ]▶ ~ ]▶
+  set -l user_char '▶'
+  if fish_is_root_user
+      set user_char '▷'
+  end
+
+  set -l left_smbl (set_color white)"◀["
+  set -l info_user (set_color magenta)"$USER"
+  set -l middle_smbl (set_color white)"]▶"
+  set -l way (set_color brgreen)(prompt_pwd | tr -d "\n")
+  set -l right_smbl (set_color white)"]$user_char"
+
+  echo $left_smbl $info_user $middle_smbl $way $right_smbl
+
+end
+
+function user_prompt_three
+# Printing
+# ~ ]▶
+  set -l user_char '▶'
+  if fish_is_root_user
+      set user_char '▷'
+  end
+
+  set -l way (set_color brgreen)(prompt_pwd | tr -d "\n")
+  set -l right_smbl (set_color white)"]$user_char"
+
+  echo $way $right_smbl
+
+end
+
+function fish_prompt
+  user_prompt_one
 end
