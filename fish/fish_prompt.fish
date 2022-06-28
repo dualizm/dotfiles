@@ -51,10 +51,10 @@ function user_log # take 1 arg
     printf "]─"
 end
 
-function user_prompt_one #no args
 # Printing
 # ┌▶◀[ [ezi]─[BORiS] ]▶ ◀[ ~ ]▶
 # └─▶
+function user_prompt_one #no args
   set -l user_char '▶'
   if fish_is_root_user
       set user_char '▷'
@@ -71,9 +71,9 @@ function user_prompt_one #no args
   echo $left_smbl $info_user $middle_smbl $way $right_smbl \n $second_line
 end
 
-function user_prompt_two
 # Printing
 # ◀[ ezi ]▶ ~ ]▶
+function user_prompt_two
   set -l user_char '▶'
   if fish_is_root_user
       set user_char '▷'
@@ -89,9 +89,9 @@ function user_prompt_two
 
 end
 
-function user_prompt_three
 # Printing
 # ~ ]▶
+function user_prompt_three
   set -l user_char '▶'
   if fish_is_root_user
       set user_char '▷'
@@ -104,6 +104,24 @@ function user_prompt_three
 
 end
 
+# Printing
+#  ezi  /etc/...
+function user_prompt_fourth
+# any var = user -  ; root -  
+# any var = user -  ; root - 
+  set -l user_char ''
+  if fish_is_root_user
+      set user_char ''
+  end
+
+  set -l info_user (set_color 50fa7b)"$USER"
+  set -l smbl (set_color bd93f9)""
+  set -l way (set_color f1fa8c)(prompt_pwd | tr -d "\n")
+  
+  echo $info_user (set_color ff5555)$user_char $smbl $way $smbl' '
+end
+
+
 function fish_prompt
-  user_prompt_one
+  user_prompt_fourth
 end

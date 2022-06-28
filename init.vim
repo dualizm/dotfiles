@@ -20,7 +20,11 @@ call plug#begin()
 
   " [COMMENTER] "
   " [------------------------------------------
-    Plug 'terrortylor/nvim-comment'
+  " ------------------------------------------]
+
+  " [SEARCHER] "
+  " [------------------------------------------
+    Plug 'ctrlpvim/ctrlp.vim'
   " ------------------------------------------]
 
   " [THEMES] "
@@ -31,6 +35,7 @@ call plug#begin()
   " [SCROLL] "
   " [------------------------------------------
     Plug 'psliwka/vim-smoothie'
+    Plug 'dracula/vim'
   " ------------------------------------------]
 
   " [ICONS] "
@@ -47,12 +52,14 @@ call plug#begin()
   " [CODE-SUPPORT] "
   " [------------------------------------------
     Plug 'Shougo/neosnippet.vim'
+    Plug 'Shougo/deoplete.nvim'
+    Plug 'Shougo/neosnippet-snippets'
     Plug 'prabirshrestha/async.vim'
     Plug 'thomasfaingnaert/vim-lsp-snippets'
     Plug 'thomasfaingnaert/vim-lsp-neosnippet'
   " ------------------------------------------]
  
-  " [Server] "
+  " [SERVER] "
   " [------------------------------------------
     Plug 'prabirshrestha/vim-lsp'
     Plug 'mattn/vim-lsp-settings'
@@ -101,7 +108,7 @@ call plug#end()
     set wildmode=longest:list,full
     set termguicolors
     "set term=xterm-256color
-    colorscheme synthwave84
+    colorscheme dracula
   " ------------------------------------------]
 
   " [SEARCH] "
@@ -146,10 +153,16 @@ call plug#end()
     nnoremap <C-n><C-f> :NERDTreeFind<CR>
   " ------------------------------------------]
 
+  " [BUFFERWORK] "
+  " [------------------------------------------
+    nnoremap <F5> :bf<CR>
+    nnoremap <F6> :bp<CR>
+  " ------------------------------------------]
+
   " [VIM-CMAKE] "
   " [------------------------------------------
-    nnoremap <F5> :CMake<CR>
-    nnoremap <F6> :make all<CR>
+    nnoremap <F4> :CMake<CR>
+    nnoremap <F3> :make all<CR>
     nnoremap <F7> :CMakeClean<CR>
   " ------------------------------------------]
 
