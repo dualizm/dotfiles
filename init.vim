@@ -159,11 +159,19 @@ call plug#end()
     nnoremap <F6> :bp<CR>
   " ------------------------------------------]
 
+  " [CHANGEPANES] "
+  " [------------------------------------------
+    noremap <C-l> <C-w>l
+    noremap <C-h> <C-w>h
+    noremap <C-j> <C-w>j
+    noremap <C-k> <C-w>k
+  " ------------------------------------------]
+
   " [VIM-CMAKE] "
   " [------------------------------------------
-    nnoremap <F4> :CMake<CR>
-    nnoremap <F3> :make all<CR>
-    nnoremap <F7> :CMakeClean<CR>
+    noremap <C-m><F6> :CMake
+    noremap <C-m><F5> :make all
+    noremap <C-m><F7> :CMakeClean<CR>
   " ------------------------------------------]
 
   " [ASYNCOMPLETE] "

@@ -105,7 +105,7 @@ function user_prompt_three
 end
 
 # Printing
-#  ezi  /etc/...
+#  ezi  /etc/... 
 function user_prompt_fourth
 # any var = user -  ; root -  
 # any var = user -  ; root - 
@@ -114,11 +114,12 @@ function user_prompt_fourth
       set user_char ''
   end
 
+  set -l gentoo_smbl (set_color 9a91db)
   set -l info_user (set_color 50fa7b)"$USER"
   set -l smbl (set_color bd93f9)""
   set -l way (set_color f1fa8c)(prompt_pwd | tr -d "\n")
   
-  echo $info_user (set_color ff5555)$user_char $smbl $way $smbl' '
+  echo ' '$gentoo_smbl $info_user (set_color ff5555)$user_char $way $smbl' '
 end
 
 
