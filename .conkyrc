@@ -13,7 +13,5 @@ conky.config = {
 }
 
 conky.text = [[
- 🐑 $memperc%  $uptime  ${exec check_ethernet.sh}  ⌨ ${exec check_keymap.sh }  ⏰ ${exec date "+%R %d/%m/%y %a"} 
+[$battery][M:$memperc%][C:$cpu%][${exec /home/nim/Prg/git_projects/conf/conkyscripts/check_ethernet.sh}][${exec /home/nim/Prg/git_projects/conf/conkyscripts/check_ethernet.sh}][⌨ ${exec /home/nim/Prg/git_projects/conf/conkyscripts/check_keymap.sh }][⏰ ${exec date "+%d-%m-%y %T"}]
 ]]
-
-

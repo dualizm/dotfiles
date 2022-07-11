@@ -20,6 +20,7 @@ call plug#begin()
 
   " [COMMENTER] "
   " [------------------------------------------
+    Plug 'tpope/vim-commentary'
   " ------------------------------------------]
 
   " [SEARCHER] "
@@ -57,6 +58,7 @@ call plug#begin()
     Plug 'prabirshrestha/async.vim'
     Plug 'thomasfaingnaert/vim-lsp-snippets'
     Plug 'thomasfaingnaert/vim-lsp-neosnippet'
+    Plug 'khaveesh/vim-fish-syntax'
   " ------------------------------------------]
  
   " [SERVER] "
@@ -145,6 +147,10 @@ call plug#end()
     noremap <F11> <Esc>:so %<CR>
   " ------------------------------------------]
     
+  " " noremap <> <Esc>gcc<CR>
+    " noremap <M-?> <Esc>gcap<CR>
+  " [------------------------------------------
+
   " [NERDTREE] "
   " [------------------------------------------
     "nnoremap <leader>n :NERDTreeFocus<CR>
