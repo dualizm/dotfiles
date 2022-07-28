@@ -13,5 +13,11 @@ conky.config = {
 }
 
 conky.text = [[
-[$battery][M:$memperc%][C:$cpu%][${exec /home/nim/Prg/git_projects/conf/conkyscripts/check_ethernet.sh}][⌨ ${exec /home/nim/Prg/git_projects/conf/conkyscripts/check_keymap.sh }][⏰ ${exec date "+%d-%m-%y %T"}]
+[${if_empty $battery}no batt${else}$battery${endif}]\
+[M:$mem]\
+[C:$cpu%]\
+[${fs_free}]\
+[${exec /home/nim/Prg/git_projects/conf/conkyscripts/check_ethernet.sh}]\
+[⌨ ${exec /home/nim/Prg/git_projects/conf/conkyscripts/check_keymap.sh }]\
+[⏰ ${exec date "+%d-%m-%y %T"}]
 ]]

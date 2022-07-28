@@ -25,7 +25,8 @@ fzf_configure_bindings --directory=\cf
 
 alias v="vim"
 
-set -U BROWSER firefox-bin
+set -Ux BROWSER firefox-bin
+set -Ux JAVA_HOME /opt/openjdk-bin-11.0.14_p9/
 
 # Alias for emerge
 

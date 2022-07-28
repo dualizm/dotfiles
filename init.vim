@@ -13,11 +13,6 @@ call plug#begin()
     Plug 'vim-airline/vim-airline'
   " ------------------------------------------]
 
-  " [EXPLORER] "
-  " [------------------------------------------
-    Plug 'preservim/nerdtree'
-  " ------------------------------------------]
-
   " [COMMENTER] "
   " [------------------------------------------
     Plug 'tpope/vim-commentary'
@@ -31,12 +26,18 @@ call plug#begin()
   " [THEMES] "
   " [------------------------------------------
     Plug 'artanikin/vim-synthwave84'
+    Plug 'dracula/vim'
+    Plug 'morhetz/gruvbox'
+  " ------------------------------------------]
+
+  " [AUTOBRACKETS] "
+  " [------------------------------------------
+    Plug 'Raimondi/delimitMate'
   " ------------------------------------------]
 
   " [SCROLL] "
   " [------------------------------------------
     Plug 'psliwka/vim-smoothie'
-    Plug 'dracula/vim'
   " ------------------------------------------]
 
   " [ICONS] "
@@ -52,23 +53,18 @@ call plug#begin()
   
   " [CODE-SUPPORT] "
   " [------------------------------------------
-    Plug 'Shougo/neosnippet.vim'
-    Plug 'Shougo/deoplete.nvim'
-    Plug 'Shougo/neosnippet-snippets'
-    Plug 'prabirshrestha/async.vim'
-    Plug 'thomasfaingnaert/vim-lsp-snippets'
-    Plug 'thomasfaingnaert/vim-lsp-neosnippet'
     Plug 'khaveesh/vim-fish-syntax'
+    Plug 'prabirshrestha/asyncomplete.vim'
+    Plug 'prabirshrestha/asyncomplete-lsp.vim'
   " ------------------------------------------]
  
   " [SERVER] "
   " [------------------------------------------
+    Plug 'prabirshrestha/async.vim'
     Plug 'prabirshrestha/vim-lsp'
-    Plug 'mattn/vim-lsp-settings'
-    Plug 'prabirshrestha/asyncomplete.vim'
-    Plug 'prabirshrestha/asyncomplete-lsp.vim'
-    Plug 'Shougo/ddc.vim'
-    Plug 'shun/ddc-vim-lsp'
+    Plug 'ajh17/vimcompletesme'
+
+    " Plug 'mattn/vim-lsp-settings'
   " ------------------------------------------]
 
 call plug#end()
@@ -110,7 +106,7 @@ call plug#end()
     set wildmode=longest:list,full
     set termguicolors
     "set term=xterm-256color
-    colorscheme dracula
+    colorscheme gruvbox
   " ------------------------------------------]
 
   " [SEARCH] "
@@ -141,6 +137,11 @@ call plug#end()
     map  <F3> <Esc>:xall<CR>
   " ------------------------------------------]
 
+  " [C++FILES] "
+  " [------------------------------------------
+    nnoremap <C-s> :call SwapFiles()<CR>
+  " ------------------------------------------]
+
   " [SEARCH] "
   " [------------------------------------------
     noremap <F12> <Esc>:nohl<CR>
@@ -150,14 +151,6 @@ call plug#end()
   " " noremap <> <Esc>gcc<CR>
     " noremap <M-?> <Esc>gcap<CR>
   " [------------------------------------------
-
-  " [NERDTREE] "
-  " [------------------------------------------
-    "nnoremap <leader>n :NERDTreeFocus<CR>
-    nnoremap <C-n><C-n> :NERDTree<CR>
-    nnoremap <C-n><C-t> :NERDTreeToggle<CR>
-    nnoremap <C-n><C-f> :NERDTreeFind<CR>
-  " ------------------------------------------]
 
   " [BUFFERWORK] "
   " [------------------------------------------
@@ -173,7 +166,7 @@ call plug#end()
     noremap <C-k> <C-w>k
   " ------------------------------------------]
 
-  " [VIM-CMAKE] "
+  " [VIM-MAKE] "
   " [------------------------------------------
     noremap <C-m><F6> :CMake
     noremap <C-m><F5> :make all
@@ -217,10 +210,55 @@ call plug#end()
 
 " ============================================]
 
+" [FUNC]
+" [============================================
+
+  function! GetFileName()
+      return expand('%:t:r')
+  endfunction
+
+  function! FindSimilarFilesR(filename)
+  endfunction
+
+  function! CheckFileExist(filename)
+    return !empty(findfile(a:filename))
+  endfunction
+
+  function! SwapFiles()
+
+  let fex = expand('%:e')
+  let files_ex = { 'hpp' : 'cc', 'cc' : 'hpp', 'c' : 'h', 'h' : 'c'}
+  let filename = GetFileName() . '.' . l:files_ex[l:fex]
+  
+  if CheckFileExist(l:filename)
+    execute( 'edit ' . l:filename)
+  else
+    echo "Not found :("
+  endif
+
+  endfunction
+
+" ============================================]
+
+
 " [CONFIG PLUG]
 " [============================================
   " [LSP] "
   " [------------------------------------------
+  if executable('clangd')
+    augroup lsp_clangd
+        autocmd!
+        autocmd User lsp_setup call lsp#register_server({
+                    \ 'name': 'clangd',
+                    \ 'cmd': {server_info->['clangd']},
+                    \ 'whitelist': ['c', 'cpp', 'objc', 'objcpp'],
+                    \ })
+        autocmd FileType c setlocal omnifunc=lsp#complete
+        autocmd FileType cpp setlocal omnifunc=lsp#complete
+        autocmd FileType objc setlocal omnifunc=lsp#complete
+        autocmd FileType objcpp setlocal omnifunc=lsp#complete
+    augroup end
+  endif
     " disable diagnostics support
     let g:lsp_diagnostics_enabled = 1   
     let g:lsp_document_highlight_enabled = 0
