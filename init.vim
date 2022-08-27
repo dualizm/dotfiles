@@ -5,44 +5,58 @@ call plug#begin()
   
   " [PLUGIN MANAGER] "
   " [------------------------------------------
-    Plug 'junegunn/vim-plug'
+    " plugin manager
+    Plug 'junegunn/vim-plug' 
   " ------------------------------------------]
   
   " [BAR] "
   " [------------------------------------------
-    Plug 'vim-airline/vim-airline'
+    " status/tabline
+    Plug 'vim-airline/vim-airline' 
   " ------------------------------------------]
 
   " [COMMENTER] "
   " [------------------------------------------
+    " automatically inserts comment characters
     Plug 'tpope/vim-commentary'
   " ------------------------------------------]
 
   " [SEARCHER] "
   " [------------------------------------------
+    "fuzzy finder   
     Plug 'junegunn/fzf.vim'
   " ------------------------------------------]
 
   " [THEMES] "
   " [------------------------------------------
+    " the port of SynthWave '84 - VS Code  
     Plug 'artanikin/vim-synthwave84'
-    Plug 'dracula/vim',
+
+    " dark theme for Vim 
+    Plug 'dracula/vim'
+
+    " gruvbox with Material Palette 
     Plug 'sainnhe/gruvbox-material'
   " ------------------------------------------]
 
   " [SCROLL] "
   " [------------------------------------------
+    " smooth scrolling done right
     Plug 'psliwka/vim-smoothie'
   " ------------------------------------------]
 
   " [ICONS] "
   " [------------------------------------------
+    " remove all background color
     Plug 'tribela/vim-transparent'
+
+    " adds file type icons
     Plug 'ryanoasis/vim-devicons'
   " ------------------------------------------]
 
   " [C-C++] "
   " [------------------------------------------
+    " make working with CMake a little nicer
     Plug 'vhdirk/vim-cmake', { 'for' : ['cpp', 'c'] }
   " ------------------------------------------]
   
@@ -52,25 +66,55 @@ call plug#begin()
   
   " [CODE-SUPPORT] "
   " [------------------------------------------
+    " syntax and ftplugin files for fish shell scripts 
     Plug 'khaveesh/vim-fish-syntax', { 'for' : ['fish'] }
+
+    " rainbow brackets
     Plug 'frazrepo/vim-rainbow'
+
+    " insert or delete brackets, parens, quotes in pair
     Plug 'jiangmiao/auto-pairs'
+
+    " async completion
     Plug 'prabirshrestha/asyncomplete.vim'
+
+    " check syntax asynchronously and fix files
     Plug 'dense-analysis/ale'
+
+    " asynchronous linting and make framework
     Plug 'neomake/neomake'
+
+    " flashes cursor after jump
     Plug 'DanilaMihailov/beacon.nvim'
+
+    " a solid language pack
     Plug 'sheerun/vim-polyglot'
+
+    " make the yanked region apparent
     Plug 'machakann/vim-highlightedyank'
+
+    " plugin to move lines and selections up and down 
     Plug 'matze/vim-move'
+
+    " a simple alignment operatortext editor 
     Plug 'tommcdo/vim-lion'
   " ------------------------------------------]
  
-  " [SERVER] "
+  " [AUTOCOMPLETE] "
   " [------------------------------------------
+    " provide lsp autocompletion source for asyncomplete.vim and vim-lsp.
     Plug 'prabirshrestha/asyncomplete-lsp.vim'
+
+    " normalize async job control api 
     Plug 'prabirshrestha/async.vim'
+
+    " async language server protocol plugin
     Plug 'prabirshrestha/vim-lsp'
+
+    " auto configurations for Language Server 
     Plug 'mattn/vim-lsp-settings'
+
+    " tab completion plugin
     Plug 'ajh17/vimcompletesme'
 
     " Plug 'mattn/vim-lsp-settings'
@@ -251,7 +295,12 @@ call plug#end()
   " [------------------------------------------
     autocmd filetype python set nocin
   " ------------------------------------------]
-
+  
+  " [VIM] "
+  " [------------------------------------------
+    autocmd filetype vim let g:AutoPairsFlyMode = 1
+  " ------------------------------------------]
+  
 " ============================================]
 
 " [FUNC]
