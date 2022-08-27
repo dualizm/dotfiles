@@ -20,19 +20,14 @@ call plug#begin()
 
   " [SEARCHER] "
   " [------------------------------------------
-    Plug 'ctrlpvim/ctrlp.vim'
+    Plug 'junegunn/fzf.vim'
   " ------------------------------------------]
 
   " [THEMES] "
   " [------------------------------------------
     Plug 'artanikin/vim-synthwave84'
-    Plug 'dracula/vim'
-    Plug 'morhetz/gruvbox'
-  " ------------------------------------------]
-
-  " [AUTOBRACKETS] "
-  " [------------------------------------------
-    Plug 'Raimondi/delimitMate'
+    Plug 'dracula/vim',
+    Plug 'sainnhe/gruvbox-material'
   " ------------------------------------------]
 
   " [SCROLL] "
@@ -48,20 +43,34 @@ call plug#begin()
 
   " [C-C++] "
   " [------------------------------------------
-    Plug 'vhdirk/vim-cmake'
+    Plug 'vhdirk/vim-cmake', { 'for' : ['cpp', 'c'] }
+  " ------------------------------------------]
+  
+  " [LISP] "
+  " [------------------------------------------
   " ------------------------------------------]
   
   " [CODE-SUPPORT] "
   " [------------------------------------------
-    Plug 'khaveesh/vim-fish-syntax'
+    Plug 'khaveesh/vim-fish-syntax', { 'for' : ['fish'] }
+    Plug 'frazrepo/vim-rainbow'
+    Plug 'jiangmiao/auto-pairs'
     Plug 'prabirshrestha/asyncomplete.vim'
-    Plug 'prabirshrestha/asyncomplete-lsp.vim'
+    Plug 'dense-analysis/ale'
+    Plug 'neomake/neomake'
+    Plug 'DanilaMihailov/beacon.nvim'
+    Plug 'sheerun/vim-polyglot'
+    Plug 'machakann/vim-highlightedyank'
+    Plug 'matze/vim-move'
+    Plug 'tommcdo/vim-lion'
   " ------------------------------------------]
  
   " [SERVER] "
   " [------------------------------------------
+    Plug 'prabirshrestha/asyncomplete-lsp.vim'
     Plug 'prabirshrestha/async.vim'
     Plug 'prabirshrestha/vim-lsp'
+    Plug 'mattn/vim-lsp-settings'
     Plug 'ajh17/vimcompletesme'
 
     " Plug 'mattn/vim-lsp-settings'
@@ -91,12 +100,12 @@ call plug#end()
     set foldcolumn =2
     set showcmd
     "set cursorline
-    "set textwidth  =80
+    set textwidth  =80
   " ------------------------------------------]
 
   " [AUTOSTART] "
   " [------------------------------------------
-    "autocmd VimEnter * NERDTree | wincmd p
+    autocmd VimEnter * echo 'Hello, nim!'
   " ------------------------------------------]
 
   " [SMALL BUNS] "
@@ -104,9 +113,24 @@ call plug#end()
     syntax on
     set nocompatible
     set wildmode=longest:list,full
-    set termguicolors
-    "set term=xterm-256color
-    colorscheme gruvbox
+
+    if has('termguicolors')
+      set termguicolors
+    endif
+
+    " highlighting brackets
+    let g:rainbow_active = 1
+
+    set background=dark
+    let g:gruvbox_material_foreground = 'material'
+    let g:gruvbox_material_background = 'hard'
+    let g:gruvbox_material_better_performance = 1
+    let g:gruvbox_material_enable_bold = 1
+    let g:gruvbox_material_ui_contrast = 'high'
+    let g:gruvbox_material_diagnostic_text_hightlight = 1
+
+    colorscheme gruvbox-material
+    let g:airline_theme = 'gruvbox_material'
   " ------------------------------------------]
 
   " [SEARCH] "
@@ -131,32 +155,52 @@ call plug#end()
 " [============================================
   " [SAVE] "
   " [------------------------------------------
+    " Save file
     imap <F2> <Esc>:w<CR>
     map  <F2> <Esc>:w<CR>
-    imap <F3> <Esc>:xall<CR>
-    map  <F3> <Esc>:xall<CR>
+    " End work
+    imap <F10> <Esc>:xall<CR>
+    map  <F10> <Esc>:xall<CR>
   " ------------------------------------------]
 
-  " [C++FILES] "
+  " [SWAP FILES] "
   " [------------------------------------------
-    nnoremap <C-s> :call SwapFiles()<CR>
+    "nnoremap <M-s> :call SwapFiles()<CR>
+  " ------------------------------------------]
+  
+  " [UPDATE] "
+  " [------------------------------------------
+    noremap <F11> <Esc>:nohl<CR>
+    noremap <F12> <Esc>:so %<CR>
   " ------------------------------------------]
 
-  " [SEARCH] "
+  " [MARKS] "
   " [------------------------------------------
-    noremap <F12> <Esc>:nohl<CR>
-    noremap <F11> <Esc>:so %<CR>
+  " ...
+    "m m 	toggle bookmark
+    "m c 	clear bookmarks
+    "m i 	add bookmark annote
+    "m a 	show all bookmarks
+    "m n 	jump to next bookmark
+    "m p 	jump to previous bookmark"
+  " ------------------------------------------]
+
+
+  " [FZF] "
+  " [------------------------------------------
+    noremap <M-f><M-b> <Esc>:Buffers<CR>
+    noremap <M-f><M-f> <Esc>:Files<CR>
+    noremap <M-f><M-l> <Esc>:Lines<CR>
+    noremap <M-f><M-h> <Esc>:History<CR>
   " ------------------------------------------]
     
   " " noremap <> <Esc>gcc<CR>
     " noremap <M-?> <Esc>gcap<CR>
   " [------------------------------------------
-
-  " [BUFFERWORK] "
-  " [------------------------------------------
-    nnoremap <F5> :bf<CR>
-    nnoremap <F6> :bp<CR>
-  " ------------------------------------------]
+  
+  " [BUFFERS]
+    noremap <F5> <Esc>:bf<CR>
+    noremap <F6> <Esc>:bn<CR>
 
   " [CHANGEPANES] "
   " [------------------------------------------
@@ -168,9 +212,9 @@ call plug#end()
 
   " [VIM-MAKE] "
   " [------------------------------------------
-    noremap <C-m><F6> :CMake
-    noremap <C-m><F5> :make all
-    noremap <C-m><F7> :CMakeClean<CR>
+    "noremap <M-b> :CMake
+    noremap <M-m> :make
+    "noremap <C-m-d> :CMakeClean<CR>
   " ------------------------------------------]
 
   " [ASYNCOMPLETE] "
@@ -213,30 +257,30 @@ call plug#end()
 " [FUNC]
 " [============================================
 
-  function! GetFileName()
-      return expand('%:t:r')
-  endfunction
+  " [SWAP-FILES] "
+  " [------------------------------------------
+    function! GetFileName()
+        return expand('%:t:r')
+    endfunction
 
-  function! FindSimilarFilesR(filename)
-  endfunction
+    function! CheckFileExist(filename)
+      return !empty(findfile(a:filename))
+    endfunction
 
-  function! CheckFileExist(filename)
-    return !empty(findfile(a:filename))
-  endfunction
+    function! SwapFiles()
 
-  function! SwapFiles()
+    let fex = expand('%:e')
+    let files_ex = { 'hpp' : 'cc', 'cc' : 'hpp', 'c' : 'h', 'h' : 'c'}
+    let filename = GetFileName() . '.' . l:files_ex[l:fex]
 
-  let fex = expand('%:e')
-  let files_ex = { 'hpp' : 'cc', 'cc' : 'hpp', 'c' : 'h', 'h' : 'c'}
-  let filename = GetFileName() . '.' . l:files_ex[l:fex]
-  
-  if CheckFileExist(l:filename)
-    execute( 'edit ' . l:filename)
-  else
-    echo "Not found :("
-  endif
+    if CheckFileExist(l:filename)
+      execute( 'edit ' . l:filename)
+    else
+      echo "File to share not found :("
+    endif
 
-  endfunction
+    endfunction
+  " ------------------------------------------]
 
 " ============================================]
 
@@ -245,24 +289,17 @@ call plug#end()
 " [============================================
   " [LSP] "
   " [------------------------------------------
-  if executable('clangd')
-    augroup lsp_clangd
-        autocmd!
-        autocmd User lsp_setup call lsp#register_server({
-                    \ 'name': 'clangd',
-                    \ 'cmd': {server_info->['clangd']},
-                    \ 'whitelist': ['c', 'cpp', 'objc', 'objcpp'],
-                    \ })
-        autocmd FileType c setlocal omnifunc=lsp#complete
-        autocmd FileType cpp setlocal omnifunc=lsp#complete
-        autocmd FileType objc setlocal omnifunc=lsp#complete
-        autocmd FileType objcpp setlocal omnifunc=lsp#complete
-    augroup end
-  endif
     " disable diagnostics support
     let g:lsp_diagnostics_enabled = 1   
     let g:lsp_document_highlight_enabled = 0
   " ------------------------------------------]
-  "  
+
+  " [VIM-MODE] "
+  " [------------------------------------------
+    let g:move_key_modifier = 'C'
+    let g:move_key_modifier_visualmode = 'C'
+  " ------------------------------------------]
+
 " ============================================]
+  "  " ============================================]
 "==============================================

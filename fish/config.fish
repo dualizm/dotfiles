@@ -21,17 +21,21 @@ fzf_configure_bindings --directory=\cf
 
 # My Asiases
 
-# Alias for vim
+alias l="lsd"
+alias g="cd"
+alias emacs="emacs -nw"
 
-alias v="vim"
+function g --wraps cd --description 'alias g=cd'
+  cd "$argv" && lsd
+end
+
+# Alias for vim
 
 set -Ux BROWSER firefox-bin
 set -Ux JAVA_HOME /opt/openjdk-bin-11.0.14_p9/
 
 # Alias for emerge
-
 alias ems="emerge -s"
-alias ls="lsd"
 alias emav="sudo emerge -av"
 alias emupw="sudo emaint -a sync && emerge --ask --verbose --update --deep --newuse @world"
 

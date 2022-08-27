@@ -52,7 +52,7 @@ function user_log # take 1 arg
 end
 
 # Printing
-# ┌▶◀[ [ezi]─[BORiS] ]▶ ◀[ ~ ]▶
+# ┌▶◀[ [usr]─[host] ]▶ ◀[ ~ ]▶
 # └─▶
 function user_prompt_one #no args
   set -l user_char '▶'
@@ -105,7 +105,7 @@ function user_prompt_three
 end
 
 # Printing
-#  ezi  /etc/... 
+#  usr  /etc/... 
 function user_prompt_fourth
 # any var = user -  ; root -  
 # any var = user -  ; root - 
@@ -122,6 +122,9 @@ function user_prompt_fourth
   
   echo ' '$gentoo_smbl $info_user (set_color ff5555)$user_char $way$smbl' '
 end
+
+# Printing
+# λ usr.
 
 
 function fish_prompt
