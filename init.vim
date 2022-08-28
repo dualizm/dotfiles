@@ -66,6 +66,7 @@ call plug#begin()
   
   " [LISP] "
   " [------------------------------------------
+    Plug 'jpalardy/vim-slime'
   " ------------------------------------------]
   
   " [POLYGLOT]
@@ -115,7 +116,7 @@ call plug#begin()
     " plugin to move lines and selections up and down 
     Plug 'matze/vim-move'
 
-    " a simple alignment operatortext editor 
+    " a simple alignment operator text editor 
     Plug 'tommcdo/vim-lion'
   " ------------------------------------------]
  
@@ -266,10 +267,10 @@ call plug#end()
 
   " [FZF] "
   " [------------------------------------------
-    noremap <M-f><M-b> <Esc>:Buffers<CR>
-    noremap <M-f><M-f> <Esc>:Files<CR>
-    noremap <M-f><M-l> <Esc>:Lines<CR>
-    noremap <M-f><M-h> <Esc>:History<CR>
+    noremap <M-f>b <Esc>:Buffers<CR>
+    noremap <M-f>f <Esc>:Files<CR>
+    noremap <M-f>l <Esc>:Lines<CR>
+    noremap <M-f>h <Esc>:History<CR>
   " ------------------------------------------]
     
   " " noremap <> <Esc>gcc<CR>
@@ -383,6 +384,18 @@ call plug#end()
   " [------------------------------------------
     let g:move_key_modifier = 'C'
     let g:move_key_modifier_visualmode = 'C'
+  " ------------------------------------------]
+
+  " [SLIME] "
+  " [------------------------------------------
+    let g:slime_target = "tmux"
+    let g:slime_default_config = {"socket_name": get(split($TMUX, ","), 0), "target_pane": ":.1"}
+  " ------------------------------------------]
+  
+
+  " [HIGHLIGHTED] "
+  " [------------------------------------------
+	  highlight HighlightedyankRegion ctermbg=237 guibg=#520887
   " ------------------------------------------]
 
 " ============================================]
