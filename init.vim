@@ -29,14 +29,18 @@ call plug#begin()
 
   " [THEMES] "
   " [------------------------------------------
-    " the port of SynthWave '84 - VS Code  
-    Plug 'artanikin/vim-synthwave84'
-
-    " dark theme for Vim 
-    Plug 'dracula/vim'
+    " A minimal colorscheme that only puts 
+    " emphasis on the paramount
+    Plug 'owickstrom/vim-colors-paramount'
 
     " gruvbox with Material Palette 
     Plug 'sainnhe/gruvbox-material'
+
+    " A nice light colorscheme
+    Plug 'aonemd/quietlight.vim'
+
+    " A collection of themes for vim-airline 
+    Plug 'vim-airline/vim-airline-themes'
   " ------------------------------------------]
 
   " [SCROLL] "
@@ -48,7 +52,7 @@ call plug#begin()
   " [ICONS] "
   " [------------------------------------------
     " remove all background color
-    Plug 'tribela/vim-transparent'
+    "Plug 'tribela/vim-transparent'
 
     " adds file type icons
     Plug 'ryanoasis/vim-devicons'
@@ -64,10 +68,28 @@ call plug#begin()
   " [------------------------------------------
   " ------------------------------------------]
   
+  " [POLYGLOT]
+  " [------------------------------------------
+    " a solid language pack
+    Plug 'sheerun/vim-polyglot'
+
+    " languages
+    Plug 'amadeus/vim-xml'
+    Plug 'ericpruitt/tmux.vim'
+    Plug 'vim-python/python-syntax'
+    Plug 'othree/html5.vim'
+    Plug 'tpope/vim-git'
+    Plug 'blankname/vim-fish'
+    Plug 'bfrg/vim-cpp-modern'
+    Plug 'clojure-vim/clojure.vim'
+    Plug 'pboettch/vim-cmake-syntax'
+  " ------------------------------------------]
+
+
   " [CODE-SUPPORT] "
   " [------------------------------------------
     " syntax and ftplugin files for fish shell scripts 
-    Plug 'khaveesh/vim-fish-syntax', { 'for' : ['fish'] }
+    "Plug 'khaveesh/vim-fish-syntax', { 'for' : ['fish'] }
 
     " rainbow brackets
     Plug 'frazrepo/vim-rainbow'
@@ -86,9 +108,6 @@ call plug#begin()
 
     " flashes cursor after jump
     Plug 'DanilaMihailov/beacon.nvim'
-
-    " a solid language pack
-    Plug 'sheerun/vim-polyglot'
 
     " make the yanked region apparent
     Plug 'machakann/vim-highlightedyank'
@@ -149,7 +168,7 @@ call plug#end()
 
   " [AUTOSTART] "
   " [------------------------------------------
-    autocmd VimEnter * echo 'Hello, nim!'
+    autocmd VimEnter * echo 'Hello, ' . $USER . '!'
   " ------------------------------------------]
 
   " [SMALL BUNS] "
@@ -165,16 +184,31 @@ call plug#end()
     " highlighting brackets
     let g:rainbow_active = 1
 
-    set background=dark
-    let g:gruvbox_material_foreground = 'material'
-    let g:gruvbox_material_background = 'hard'
-    let g:gruvbox_material_better_performance = 1
-    let g:gruvbox_material_enable_bold = 1
-    let g:gruvbox_material_ui_contrast = 'high'
-    let g:gruvbox_material_diagnostic_text_hightlight = 1
+    let theme_gruvbox = 0
+    let theme_paramount = 1
+    let theme_quietlight= 0
 
-    colorscheme gruvbox-material
-    let g:airline_theme = 'gruvbox_material'
+    if theme_gruvbox
+
+      set background=dark
+      let g:gruvbox_material_foreground = 'mix'
+      let g:gruvbox_material_background = 'hard'
+      let g:gruvbox_material_better_performance = 1
+      let g:gruvbox_material_enable_bold = 1
+      let g:gruvbox_material_ui_contrast = 'high'
+      let g:gruvbox_material_diagnostic_text_hightlight = 1
+
+      colorscheme gruvbox-material
+      let g:airline_theme = 'gruvbox_material'
+    elseif theme_paramount
+      set background=dark
+      colorscheme paramount
+      let g:airline_theme='base16_black_metal_marduk'
+    elseif theme_quietlight
+      set background=light
+      colorscheme quietlight
+      let g:airline_theme='base16_fruit_soda'
+    endif 
   " ------------------------------------------]
 
   " [SEARCH] "
@@ -243,8 +277,10 @@ call plug#end()
   " [------------------------------------------
   
   " [BUFFERS]
+  " [------------------------------------------
     noremap <F5> <Esc>:bf<CR>
     noremap <F6> <Esc>:bn<CR>
+  " [------------------------------------------
 
   " [CHANGEPANES] "
   " [------------------------------------------

@@ -54,7 +54,7 @@ end
 # Printing
 # ┌▶◀[ [usr]─[host] ]▶ ◀[ ~ ]▶
 # └─▶
-function user_prompt_one #no args
+function user_prompt_hack #no args
   set -l user_char '▶'
   if fish_is_root_user
       set user_char '▷'
@@ -73,7 +73,7 @@ end
 
 # Printing
 # ◀[ ezi ]▶ ~ ]▶
-function user_prompt_two
+function user_prompt_claws
   set -l user_char '▶'
   if fish_is_root_user
       set user_char '▷'
@@ -91,7 +91,7 @@ end
 
 # Printing
 # ~ ]▶
-function user_prompt_three
+function user_prompt_simple
   set -l user_char '▶'
   if fish_is_root_user
       set user_char '▷'
@@ -106,7 +106,7 @@ end
 
 # Printing
 #  usr  /etc/... 
-function user_prompt_fourth
+function user_prompt_gentoo_style
 # any var = user -  ; root -  
 # any var = user -  ; root - 
   set -l user_char ''
@@ -124,9 +124,23 @@ function user_prompt_fourth
 end
 
 # Printing
-# λ usr.
+# ∀ λusr./etc/... 
+function user_prompt_lambda
+# any var = user - ∃  ; root - ∀
+  set -l user_char '∃'
+  if fish_is_root_user
+      set user_char '∀'
+  end
+
+  # gentoo color 9a91db
+  set -l lambda_smbl (set_color bd93f9)λ
+  set -l info_user (set_color 50fa7b)"$USER"
+  set -l way (set_color f1fa8c)(prompt_pwd | tr -d "\n")
+  
+  echo ' '(set_color ff5555)$user_char $lambda_smbl$info_user.$way' '
+end
 
 
 function fish_prompt
-  user_prompt_fourth
+  user_prompt_lambda
 end
