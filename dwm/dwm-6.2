@@ -82,7 +82,7 @@ static Key keys[] = {
 	// My binds
 	{ MODKEY|AltMask,		XK_e,	   spawn,	   {.v = emacs } },
 	{ MODKEY|AltMask,               XK_b,      spawn,          {.v = firefox } },
-	{ MODKEY|AltMask,               XK_P,      spawn,          SHCMD("maim ~/Screenshots/`date +\"%d_%I:%M:%S_%Y\"`_screen.png") },
+	{ MODKEY|AltMask,               XK_o,      spawn,          SHCMD("maim ~/Screenshots/`date +\"%d_%I:%M:%S_%Y\"`_screen.png") },
 	{ MODKEY|AltMask,               XK_p,      spawn,          SHCMD("maim -s ~/Screenshots/`date +\"%d_%I:%M:%S_%Y\"`_screen.png") },
 	{ MODKEY|AltMask,		XK_c,	   spawn,	   SHCMD("xmcp | xsel -b") },
 	{ MODKEY|AltMask,		XK_m, 	   spawn,	   SHCMD("alacritty -e cmus") },		

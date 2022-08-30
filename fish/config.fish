@@ -3,7 +3,52 @@ if status is-interactive
     # Commands to run in interactive sessions can go here
 end
 
+function hi-user
+  printf "\n         Hi, $USER !      \n"
+end
+
+function print-sleepy-cat
+  printf "       |\      _,,,---,,_\n"
+  printf " ZZZzz /,`.-'`'    -.  ;-;;,_\n"
+  printf "      |,4-  ) )-,_. ,\ (  `'-'\n"
+  printf "     '---''(_/--'  `-'\_)  Relax \n\n"
+end
+
+function print-break-cat
+  printf "                        |\---/|\n"
+  printf "                        | ,_, |\n"
+  printf " Maybe take a break?     \_`_/-..----.\n"
+  printf "                      ___/ `   ' ,\"\"+ \\ \n"
+  printf "                     (__...'   __\\    |'.___.';\n"
+  printf "                       (_,...'(_,.'__)/'.....+\n\n"
+end
+
+function print-cat-hunter
+  printf "  _._     _,-'""`-._\n"
+  printf " (,-.`._,'(       |\`-/|\n"
+  printf "     `-.-' \ )-`( , o o)\n"
+  printf "           `-    \`_`\"'- Bug somewhere close \n\n"
+end
+
+function print-secretive-cat
+  printf "                        |\\__/,|   ('\\ \n"
+  printf " The answer is near   _.|o o  |_   ) ) \n"
+  printf "                    -(((---(((-------- \n\n"
+end
+
 function fish_greeting
+  printf (set_color 9480bd)
+  hi-user
+  switch ( random 1 4 )
+    case 1
+      print-secretive-cat
+    case 2
+      print-cat-hunter
+    case 3
+      print-sleepy-cat
+    case 4
+      print-break-cat
+  end
 end
 
 # Segment endings
