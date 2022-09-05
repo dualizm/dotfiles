@@ -20,6 +20,19 @@ call plug#begin()
     " automatically inserts comment characters
     Plug 'tpope/vim-commentary'
   " ------------------------------------------]
+  
+  " [PROJECT-MANAGER] "
+  " [------------------------------------------
+    " a tree explorer plugin for vim. 
+    Plug 'preservim/nerdtree'
+  " ------------------------------------------]
+  
+  " [GIT] "
+  " [------------------------------------------
+    "  a git wrapper so awesome,
+    "  it should be illegal 
+    Plug 'tpope/vim-fugitive'
+  " ------------------------------------------]
 
   " [SEARCHER] "
   " [------------------------------------------
@@ -46,13 +59,17 @@ call plug#begin()
   " [SCROLL] "
   " [------------------------------------------
     " smooth scrolling done right
-    Plug 'psliwka/vim-smoothie'
+    "Plug 'psliwka/vim-smoothie'
+
+    " smooth scrolling neovim 
+    " plugin written in lua 
+    Plug 'karb94/neoscroll.nvim'
   " ------------------------------------------]
 
   " [ICONS] "
   " [------------------------------------------
     " remove all background color
-    "Plug 'tribela/vim-transparent'
+    Plug 'tribela/vim-transparent'
 
     " adds file type icons
     Plug 'ryanoasis/vim-devicons'
@@ -66,24 +83,15 @@ call plug#begin()
   
   " [LISP] "
   " [------------------------------------------
-    Plug 'jpalardy/vim-slime'
+    "Plug 'jpalardy/vim-slime'
+    Plug 'kovisoft/slimv'
+    Plug 'kovisoft/paredit'
   " ------------------------------------------]
   
   " [POLYGLOT]
   " [------------------------------------------
     " a solid language pack
     Plug 'sheerun/vim-polyglot'
-
-    " languages
-    Plug 'amadeus/vim-xml'
-    Plug 'ericpruitt/tmux.vim'
-    Plug 'vim-python/python-syntax'
-    Plug 'othree/html5.vim'
-    Plug 'tpope/vim-git'
-    Plug 'blankname/vim-fish'
-    Plug 'bfrg/vim-cpp-modern'
-    Plug 'clojure-vim/clojure.vim'
-    Plug 'pboettch/vim-cmake-syntax'
   " ------------------------------------------]
 
 
@@ -95,8 +103,9 @@ call plug#begin()
     " rainbow brackets
     Plug 'frazrepo/vim-rainbow'
 
-    " insert or delete brackets, parens, quotes in pair
-    Plug 'jiangmiao/auto-pairs'
+    " insert or delete brackets,
+    " parens, quotes in pair
+    "Plug 'jiangmiao/auto-pairs'
 
     " async completion
     Plug 'prabirshrestha/asyncomplete.vim'
@@ -113,16 +122,23 @@ call plug#begin()
     " make the yanked region apparent
     Plug 'machakann/vim-highlightedyank'
 
-    " plugin to move lines and selections up and down 
+    " plugin to move lines and 
+    " selections up and down 
     Plug 'matze/vim-move'
 
     " a simple alignment operator text editor 
     Plug 'tommcdo/vim-lion'
+
+    " display the indention levels
+    " with thin vertical lines 
+    Plug 'Yggdroot/indentLine'
+
   " ------------------------------------------]
  
   " [AUTOCOMPLETE] "
   " [------------------------------------------
-    " provide lsp autocompletion source for asyncomplete.vim and vim-lsp.
+    " provide lsp autocompletion source 
+    " for asyncomplete.vim and vim-lsp.
     Plug 'prabirshrestha/asyncomplete-lsp.vim'
 
     " normalize async job control api 
@@ -182,33 +198,37 @@ call plug#end()
       set termguicolors
     endif
 
+    " Enable GUI Tabline
+    if exists(':GuiTabline')
+        GuiTabline 1
+    endif
+
     " highlighting brackets
     let g:rainbow_active = 1
 
-    let theme_gruvbox = 0
-    let theme_paramount = 1
-    let theme_quietlight= 0
+    let theme_gruvbox    = 0
+    let theme_paramount  = 1
+    let theme_quietlight = 0
 
     if theme_gruvbox
-
       set background=dark
-      let g:gruvbox_material_foreground = 'mix'
-      let g:gruvbox_material_background = 'hard'
-      let g:gruvbox_material_better_performance = 1
-      let g:gruvbox_material_enable_bold = 1
-      let g:gruvbox_material_ui_contrast = 'high'
-      let g:gruvbox_material_diagnostic_text_hightlight = 1
+      let g:gruvbox_material_foreground                 ='mix'
+      let g:gruvbox_material_background                 ='hard'
+      let g:gruvbox_material_better_performance         =1
+      let g:gruvbox_material_enable_bold                =1
+      let g:gruvbox_material_ui_contrast                ='high'
+      let g:gruvbox_material_diagnostic_text_hightlight =1
 
       colorscheme gruvbox-material
-      let g:airline_theme = 'gruvbox_material'
+      let g:airline_theme ='gruvbox_material'
     elseif theme_paramount
       set background=dark
       colorscheme paramount
-      let g:airline_theme='base16_black_metal_marduk'
+      let g:airline_theme ='base16_black_metal_marduk'
     elseif theme_quietlight
       set background=light
       colorscheme quietlight
-      let g:airline_theme='base16_fruit_soda'
+      let g:airline_theme ='base16_fruit_soda'
     endif 
   " ------------------------------------------]
 
@@ -225,7 +245,7 @@ call plug#end()
     set fileencoding =utf8
     set encoding     =utf8
     set termencoding =utf8
-    set guifont      =Hack:h10
+    set guifont      =FiraCode\ Nerd\ Font\ Mono:h12
   " ------------------------------------------]
 
 " ============================================]
@@ -247,6 +267,12 @@ call plug#end()
     "nnoremap <M-s> :call SwapFiles()<CR>
   " ------------------------------------------]
   
+  " [NERDTree] "
+  " [------------------------------------------
+    noremap <C-n>t <Esc>:NERDTree<CR>
+    noremap <C-n>r <Esc>:NERDTreeCWD<CR>
+  " ------------------------------------------]
+
   " [UPDATE] "
   " [------------------------------------------
     noremap <F11> <Esc>:nohl<CR>
@@ -376,19 +402,19 @@ call plug#end()
   " [LSP] "
   " [------------------------------------------
     " disable diagnostics support
-    let g:lsp_diagnostics_enabled = 1   
+    let g:lsp_diagnostics_enabled        = 1   
     let g:lsp_document_highlight_enabled = 0
   " ------------------------------------------]
 
   " [VIM-MODE] "
   " [------------------------------------------
-    let g:move_key_modifier = 'C'
+    let g:move_key_modifier            = 'C'
     let g:move_key_modifier_visualmode = 'C'
   " ------------------------------------------]
 
   " [SLIME] "
   " [------------------------------------------
-    let g:slime_target = "tmux"
+    let g:slime_target         = "tmux"
     let g:slime_default_config = {"socket_name": get(split($TMUX, ","), 0), "target_pane": ":.1"}
   " ------------------------------------------]
   
@@ -398,6 +424,27 @@ call plug#end()
 	  highlight HighlightedyankRegion ctermbg=237 guibg=#520887
   " ------------------------------------------]
 
+  " [INDENTLINE] "
+  " [------------------------------------------
+    " let g:indentLine_setColors = 234
+    " let g:indentLine_color_term = 23
+    " let g:indentLine_bgcolor_term = 0
+    let g:indentLine_char = '.'
+    " let g:indentLine_char_list = ['.', ' ', '.', ' ', '.', ' ', '.', ' ', '.', ' ', '.', ' ']
+  " ------------------------------------------]
+   
+
+  " [SCROLL] "
+  " [------------------------------------------
+    lua require('neoscroll').setup()
+  " ------------------------------------------]
+
+  " [PYTHON]
+  " [------------------------------------------
+    let g:python3_host_prog = '/usr/bin/python3'
+    let g:python_host_prog = '/usr/bin/python'
+  " ------------------------------------------]
+
+
 " ============================================]
-  "  " ============================================]
 "==============================================
