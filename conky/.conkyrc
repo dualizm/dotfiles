@@ -17,6 +17,6 @@ conky.text = [[
  M:$mem \
  C:$cpu% \
  ${fs_free} \
- ${exec /home/nim/dev/git_projects/conf/conkyscripts/check_ethernet.sh} \
- ⌨ ${exec /home/nim/dev/git_projects/conf/conkyscripts/check_keymap.sh } \
+ ${exec /home/nim/dev/git_projects/conf/conky/check_ethernet.sh} \
+ ⌨ ${exec /home/nim/dev/git_projects/conf/conky/check_keymap.sh } \
  ⏰ ${exec date "+%d-%m-%y %T"} ]]

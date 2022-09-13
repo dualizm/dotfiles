@@ -66,12 +66,11 @@ fzf_configure_bindings --directory=\cf
 
 # My Asiases
 
-alias l="lsd"
-alias g="cd"
-alias emacs="emacs -nw"
+alias ls="lsd"
+# alias emacs="emacs -nw"
 
 function g --wraps cd --description 'alias g=cd'
-  cd "$argv" && lsd
+  cd "$argv" && lsd '-la'
 end
 
 # Alias for vim
