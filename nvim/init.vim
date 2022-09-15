@@ -358,12 +358,6 @@ call plug#end()
   " [------------------------------------------
     autocmd filetype python set nocin
   " ------------------------------------------]
-  
-  " [VIM] "
-  " [------------------------------------------
-    autocmd filetype vim let g:AutoPairsFlyMode = 1
-  " ------------------------------------------]
-  
 " ============================================]
 
 " [FUNC]
@@ -421,7 +415,7 @@ call plug#end()
 
   " [HIGHLIGHTED] "
   " [------------------------------------------
-	  highlight HighlightedyankRegion ctermbg=237 guibg=#520887
+    highlight HighlightedyankRegion ctermbg=237 guibg=#520887
   " ------------------------------------------]
 
   " [INDENTLINE] "
