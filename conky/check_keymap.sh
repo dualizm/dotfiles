@@ -1,9 +1,21 @@
 #!/bin/bash
 
+# xset q | grep LED
 
-if [[ `xset -q | sed -rn 's/.*LED mask.*(.)[[:xdigit:]]{3}$/\1/p'` -eq 0 ]]
+check_caps() # take 1 string
+{
+  if [[ `xset q | sed -rn '/1$/ p'` -eq 0 ]]
+  then
+    echo ${1,,};
+  else
+    echo ${1^^};
+  fi
+
+}
+
+if [[ `xset q | sed -rn 's/.*LED mask.*(.)[[:xdigit:]]{3}$/\1/p'` -eq 0 ]]
 then
-  echo "EN";
+  check_caps "en";
 else
-  echo "RU";
+  check_caps "ru";
 fi
