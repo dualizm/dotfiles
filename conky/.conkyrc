@@ -11,12 +11,14 @@ conky.config = {
   double_buffer = true,
   own_window_type = 'desktop',
 }
+-- ⏰
+-- ⌨
 
 conky.text = [[
- ${if_empty $battery}no batt${else}$battery${endif} \
- M:$mem \
- C:$cpu% \
- ${fs_free} \
- ${exec /home/nim/dev/git_projects/conf/conky/check_ethernet.sh} \
- ⌨ ${exec /home/nim/dev/git_projects/conf/conky/check_keymap.sh } \
- ⏰ ${exec date "+%d-%m-%y %T"} ]]
+${if_empty $battery}-%${else}$battery_percent%${endif} \
+$mem \
+$cpu% \
+${fs_free} \
+${exec /home/nim/dev/git_projects/conf/conky/check_ethernet.sh} \
+${exec /home/nim/dev/git_projects/conf/conky/check_keymap.sh } \
+${exec date "+%d/%m/%y %a-%b %R"}]]
