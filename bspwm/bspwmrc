@@ -3,7 +3,8 @@
 #--------------------------------------------------------
 # ( autostart )
 #--------------------------------------------------------
-sxhkd &
+#killall -9 sxhkd nitrogen polybar picom
+sxhkd -c ~/.config/sxhkd/sxhdkrc &
 nitrogen --restore &
 ~/scripts/keyboard-reset.sh &
 xsetroot -cursor_name left_ptr &
@@ -44,6 +45,10 @@ bspc config single_monocle	     false
 bspc config borderless_monocle   false
 bspc config gapless_monocle      false
 bspc config paddingless_monocle	 true
+
+bspc config pointer_action1 move
+bspc config pointer_action2 resize_side
+bspc config pointer_action2 resize_corner
 #--------------------------------------------------------
 
 #--------------------------------------------------------
