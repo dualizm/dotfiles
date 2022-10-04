@@ -4,7 +4,7 @@
 # ( autostart )
 #--------------------------------------------------------
 #killall -9 sxhkd nitrogen polybar picom
-sxhkd -c ~/.config/sxhkd/sxhdkrc &
+sxhkd &
 nitrogen --restore &
 ~/scripts/keyboard-reset.sh &
 xsetroot -cursor_name left_ptr &
@@ -56,6 +56,5 @@ bspc config pointer_action2 resize_corner
 #--------------------------------------------------------
 # bspc rule -a dmenu_run state=floating rectangle=99x22+610+90
 bspc rule -a Firefox desktop='^1'
-bspc rule -a Emacs state=tiled desktop='^2'
 bspc rule -a discord desktop='^5'
 #--------------------------------------------------------
