@@ -91,8 +91,13 @@ super + alt + e
       emacs
 
 # Screenshot
-super + {_, alt +} p
-      maim {,-s} ~/screenshots/$(date +\"%d_%I:%M:%S_%Y\")_screen.jpg
+#----
+super + alt + p
+      maim ~/screenshots/$(date +\"%d_%I:%M:%S_%Y\")_screen.jpg
+
+super + ctrl + p
+      maim -s ~/screenshots/$(date +\"%d_%I:%M:%S_%Y\")_screen.jpg
+#----
 
 # Colorpick
 super + alt + c
