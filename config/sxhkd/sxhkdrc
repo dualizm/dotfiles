@@ -46,11 +46,11 @@ super + {grave,Tab}
 #----
 # Set the window state
 super + {t,shift + t,s,f}
-	bspc node -t {tiled,pseudo_tiled,floating,fullscreen}
+      bspc node -t {tiled,pseudo_tiled,floating,fullscreen}
 
 # Set the node flags
 super + ctrl + {m,x,y,z}
-	bspc node -g {marked,locked,sticky,private}
+      bspc node -g {marked,locked,sticky,private}
 #----
 
 # Move/resize
@@ -68,6 +68,15 @@ super + alt + shift + {h,j,k,l}
 super + {Left,Down,Up,Right}
 	bspc node -v {-20 0,0 20,0 -20,20 0}
 
+#----
+
+# Hidde/Show
+#----
+super + ctrl + h
+    bspc node -g hidden=on
+
+super + ctrl + s
+    bspc node "$(bspc query -N -n .hidden | tail -n1)" -g hidden=off
 #----
 
 #-------------------------------------------------------------------
@@ -91,13 +100,11 @@ super + alt + e
       emacs
 
 # Screenshot
-#----
 super + alt + p
       maim ~/screenshots/$(date +\"%d_%I:%M:%S_%Y\")_screen.jpg
 
 super + ctrl + p
       maim -s ~/screenshots/$(date +\"%d_%I:%M:%S_%Y\")_screen.jpg
-#----
 
 # Colorpick
 super + alt + c
@@ -112,7 +119,7 @@ super + alt + v
       kitty -e alsamixer
 
 # System proc
-super + alt + h
+super + alt + s
       kitty -e htop
 
 # Neovim
