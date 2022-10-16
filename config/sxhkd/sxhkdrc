@@ -85,7 +85,7 @@ super + ctrl + s
 
 # App menu
 super + p
-      dmenu_run -fn 'FiraCode-11' -nb '#161616' -nf '#545253' -sb '#8e4b8c' -sf '#dde1e6'
+      dmenu_run -fn 'FiraCode-11' -nb '#0c0e14' -nf '#545253' -sb '#d34474' -sf '#dde1e6'
 
 # Terminal
 super + shift + Return
