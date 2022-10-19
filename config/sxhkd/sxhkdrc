@@ -30,8 +30,8 @@ super + {_,shift + }{h,j,k,l}
 	bspc node -{f,s} {west,south,north,east}
 
 # Next/previous node in the current desktop
-super + {_,shift + }c
-	bspc node -f {next,prev}.local
+super + ctrl + o
+	bspc node -f next.local
 
 # Select desk
 super + {_,shift + }{1-9,0}
