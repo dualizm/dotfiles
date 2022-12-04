@@ -53,7 +53,9 @@
 #---------
 # FZF-CONFIG
 #---------
-  fzf_configure_bindings --directory=\cf
+  if type -q fzf
+    fzf_configure_bindings --directory=\cf
+  end
 
 #---------
 # ENV
@@ -61,18 +63,46 @@
   set -Ux BROWSER firefox-bin
   set -Ux JAVA_HOME /opt/openjdk-bin-11.0.14_p9/
 
+  if type -q nvim
+    set -Ux EDITOR nvim
+  else if type -q vim
+    set -Ux EDITOR vim
+  else if type -q vi
+    set -Ux EDITOR vi
+  end
+
 #---------
 # ALIAS
 #---------
   #-- EDITOR
-    alias ed="nvim"
-    #alias emacs="emacs -nw"
+    if type -q nvim
+      alias e="nvim"
+    else if type -q vim
+      alias e="vim"
+    else if type -q vi
+      alias e="vi"
+    end
+
+  #-- DEV
+    if type -q git
+      function git-default-push --wraps git
+        git add .
+        git commit -m "[upd]"
+        git push
+      end
+    end
 
   #-- LINUX-COMMAND
-    alias ls="lsd"
+    if type -q lsd
+      alias ls="lsd"
+    end
 
     function g --wraps cd --description 'alias g=cd'
-      cd "$argv" && lsd '-la'
+      if string length -q $argv
+	cd "$argv" && lsd '-la'
+      else
+        cd . && lsd '-la'
+      end
     end
 
     function del --wraps mv --description 'alias del=mv'
@@ -84,8 +114,11 @@
     alias ...="cd ../.."
 
   #-- GENTOO
-    alias repfd="emerge -s"
-    alias repFd="emerge -S"
-    alias ginst="sudo emerge -av"
-    alias grem="sudo emerge -Wav"
-    alias gentoo_upd="sudo emerge -uDNav @world"
+    if type -q emerge
+      alias ems="emerge -s"
+      alias emS="emerge -S"
+      alias emI="sudo emerge -av"
+      alias emD="sudo emerge -Wav"
+      alias emU="sudo emerge -uDNav @world"
+    end
+
