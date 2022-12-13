@@ -133,11 +133,16 @@ function user_prompt_lambda
   end
 
   # gentoo color 9a91db
-  set -l lambda_smbl (set_color bd93f9)λ
-  set -l info_user (set_color 50fa7b)"$USER"
-  set -l way (set_color f1fa8c)(prompt_pwd | tr -d "\n")
-  
-  echo ' '(set_color ff5555)$user_char $lambda_smbl$info_user.$way' '
+  set -l lambda_smbl (set_color ba617f)λ
+# bd93f9
+# (set_color 50fa7b)
+  set -l info_user (set_color d34474)"$USER"
+#
+#f1fa8c
+  set -l way (set_color 44d3a3)(prompt_pwd | tr -d "\n")
+  #
+  #ff5555
+  echo ' '(set_color d35c44)$user_char $lambda_smbl$info_user.$way' '
 end
 
 
