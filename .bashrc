@@ -18,3 +18,5 @@ fi
 # Put your fun stuff here.
 
 PS1="\e[2;31m\][~\e[m \e[3;35m\]\u\e[m\e[3;31m\]~\e[m\e[3;35m\]\h\e[m \e[2;31m\]~]\e[m \e[2;31m\]<\e[m\e[0;32m\]\w\$\e[m\e[2;31m\]->\e[m "
+
+export BROWSER=/usr/bin/firefox
