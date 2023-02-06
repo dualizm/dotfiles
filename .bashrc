@@ -7,6 +7,7 @@ alias ls='ls --color=auto'
 alias xin='sudo xbps-install'
 alias xrm='sudo xbps-remove'
 alias xqr='xbps-query'
+alias git-defp='git add . && git commit -m "[upd]" && git push'
 
 PS1='(λ (\u@\h) \W):\$ '
 LS_COLORS=$LS_COLORS:'di=1;33:'
