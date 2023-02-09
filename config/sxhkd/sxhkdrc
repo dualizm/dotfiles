@@ -11,7 +11,7 @@ super + shift + {q,r}
       bspc {quit, wm -r}
 
 # Close/Kill window
-super + shift + c
+super + ctrl + k
       bspc node -{c}
 
 # Monocle/tiled
@@ -49,7 +49,7 @@ super + {t,shift + t,s,f}
       bspc node -t {tiled,pseudo_tiled,floating,fullscreen}
 
 # Set the node flags
-super + ctrl + {m,x,y,z}
+super + alt + {m,x,y,z}
       bspc node -g {marked,locked,sticky,private}
 #----
 
@@ -75,7 +75,7 @@ super + {Left,Down,Up,Right}
 super + ctrl + h
     bspc node -g hidden=on
 
-super + ctrl + s
+super + ctrl + shift + h
     bspc node "$(bspc query -N -n .hidden | tail -n1)" -g hidden=off
 #----
 
@@ -84,47 +84,35 @@ super + ctrl + s
 #-------------------------------------------------------------------
 
 # App menu
-super + p
-      dmenu_run -fn 'FiraCode-11' -nb '#0c0e14' -nf '#545253' -sb '#d34474' -sf '#dde1e6'
+super + ctrl + r
+      rofi -show run
 
 # Terminal
-super + shift + Return
-      kitty
+super + ctrl + c
+      alacritty
 
 # Browser
-super + alt + b
-      firefox-bin
+super + ctrl + w
+      firefox
 
 # Editor
-super + alt + e
+super + ctrl + e
       emacs
 
+# Telega
+super + ctrl + t
+      telegram-desktop
+
 # Screenshot
-super + alt + p
+super + ctrl + s
       maim ~/screenshots/$(date +\"%d_%I:%M:%S_%Y\")_screen.jpg
 
-super + ctrl + p
+super + ctrl + S
       maim -s ~/screenshots/$(date +\"%d_%I:%M:%S_%Y\")_screen.jpg
 
 # Colorpick
-super + alt + c
-      xmcp | xsel -b
-
-# Music
-super + alt + m
-      kitty -e cmus
-
-# Alsa
-super + alt + v
-      kitty -e alsamixer
-
-# System proc
-super + alt + s
-      kitty -e htop
-
-# Neovim
-#super + alt + n
-#      neovide
+#super + alt + c
+#      xmcp | xsel -b
 
 #|-------------------------------------------------------------------
 

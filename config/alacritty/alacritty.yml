@@ -23,7 +23,8 @@ env:
   # available, otherwise `xterm-256color` is used.
   TERM: xterm-256color #alacritty 
 
-#window:
+window:
+  opacity: 0.80
   # Window dimensions (changes require restart)
   #
   # Number of lines/columns (not pixels) in the terminal. The number of columns
@@ -101,22 +102,22 @@ scrolling:
 
 font:
   normal:
-    family: Fira Code
+    family: PragmataPro
     style: Regular
 
   bold:
-    family: Fira Code
+    family: PragmataPro
     style: Bold
 
   italic:
-    family: Fira Code
+    family: PragmataPro
     style: Italic
 
   bold_italic:
-    family: Fira Code
+    family: PragmataPro
     style: Bold Italic
 
-  size: 9
+  size: 12
   # Offset is the extra space around each character. `offset.y` can be thought
   # of as modifying the line spacing, and `offset.x` as modifying the letter
   # spacing.
@@ -139,130 +140,34 @@ font:
 
 # If `true`, bold text is drawn using the bright color variants.
 #draw_bold_text_with_bright_colors: false
-
-# Colors (Gruvbox dark)
+# Colors (Ayu Dark)
 colors:
-#   # Default colors
+  # Default colors
   primary:
-#     # hard contrast: background = '0x1d2021'
-    background: '#000000' #'0x282828'
-#     # soft contrast: background = '0x32302f'
-#     foreground: '0xebdbb2'
+    background: '0x0A0E14'
+    foreground: '0xB3B1AD'
 
-#   # Normal colors
-#   normal:
-#     black:   '0x282828'
-#     red:     '0xcc241d'
-#     green:   '0x98971a'
-#     yellow:  '0xd79921'
-#     blue:    '0x458588'
-#     magenta: '0xb16286'
-#     cyan:    '0x689d6a'
-#     white:   '0xa89984'
+  # Normal colors
+  normal:
+    black:   '0x01060E'
+    red:     '0xEA6C73'
+    green:   '0x91B362'
+    yellow:  '0xF9AF4F'
+    blue:    '0x53BDFA'
+    magenta: '0xFAE994'
+    cyan:    '0x90E1C6'
+    white:   '0xC7C7C7'
 
-#   # Bright colors
-#   bright:
-#     black:   '0x928374'
-#     red:     '0xfb4934'
-#     green:   '0xb8bb26'
-#     yellow:  '0xfabd2f'
-#     blue:    '0x83a598'
-#     magenta: '0xd3869b'
-#     cyan:    '0x8ec07c'
-#     white:   '0xebdbb2'
-
-
-## Colors (Dracula)
-# Dracula theme for Alacritty
-# https://draculatheme.com/alacritty
-#
-# Color palette
-# https://spec.draculatheme.com
-#
-# Template
-# https://github.com/alacritty/alacritty/blob/master/alacritty.yml
-
-# colors:
-#   primary:
-#     background: '#000000' #'#282a36'
-#     foreground: '#f8f8f2'
-#     bright_foreground: '#ffffff'
-#   cursor:
-#     text: CellBackground
-#     cursor: CellForeground
-#   vi_mode_cursor:
-#     text: CellBackground
-#     cursor: CellForeground
-#   search:
-#     matches:
-#       foreground: '#44475a'
-#       background: '#50fa7b'
-#     focused_match:
-#       foreground: '#44475a'
-#       background: '#ffb86c'
-#     bar:
-#       background: '#282a36'
-#       foreground: '#f8f8f2'
-#   hints:
-#     start:
-#       foreground: '#282a36'
-#       background: '#f1fa8c'
-#     end:
-#       foreground: '#f1fa8c'
-#       background: '#282a36'
-#   line_indicator:
-#     foreground: None
-#     background: None
-#   selection:
-#     text: CellForeground
-#     background: '#44475a'
-#   normal:
-#     black: '#21222c'
-#     red: '#ff5555'
-#     green: '#50fa7b'
-#     yellow: '#f1fa8c'
-#     blue: '#bd93f9'
-#     magenta: '#ff79c6'
-#     cyan: '#8be9fd'
-#     white: '#f8f8f2'
-#   bright:
-#     black: '#6272a4'
-#     red: '#ff6e6e'
-#     green: '#69ff94'
-#     yellow: '#ffffa5'
-#     blue: '#d6acff'
-#     magenta: '#ff92df'
-#     cyan: '#a4ffff'
-#     white: '#ffffff'
-## Colors (Blood Moon)
-#colors:
-#  # Default colors
-#  primary:
-#    background: '#000000'
-#    #background: '#10100E'
-#    foreground: '#C6C6C4'
-#
-#  # Normal colors
-#  normal:
-#    black:   '#10100E'
-#    red:     '#C40233'
-#    green:   '#009F6B'
-#    yellow:  '#FFD700'
-#    blue:    '#0087BD'
-#    magenta: '#9A4EAE'
-#    cyan:    '#20B2AA'
-#    white:   '#C6C6C4'
-#
-#  # Bright colors
-#  bright:
-#    black:   '#696969'
-#    red:     '#FF2400'
-#    green:   '#03C03C'
-#    yellow:  '#FDFF00'
-#    blue:    '#007FFF'
-#    magenta: '#FF1493'
-#    cyan:    '#00CCCC'
-#    white:   '#FFFAFA'
+  # Bright colors
+  bright:
+    black:   '0x686868'
+    red:     '0xF07178'
+    green:   '0xC2D94C'
+    yellow:  '0xFFB454'
+    blue:    '0x59C2FF'
+    magenta: '0xFFEE99'
+    cyan:    '0x95E6CB'
+    white:   '0xFFFFFF'
 
 # Bell
 #
@@ -304,12 +209,6 @@ colors:
   #     args: ["Hello, World!"]
   #
   #command: None
-
-# Background opacity
-#
-# Window opacity as a floating point number from `0.0` to `1.0`.
-# The value `0.0` is completely transparent and `1.0` is opaque.
-background_opacity: 0.80
 
 #selection:
   # This string contains all characters that are used as separators for
