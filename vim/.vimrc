@@ -34,7 +34,7 @@
     set wildmode=longest:list,full
     set termguicolors
     set term=xterm-256color
-    colorscheme default
+    colorscheme koehler
 " ============================================]
 
 " [SEARCH]
