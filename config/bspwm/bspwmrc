@@ -6,7 +6,7 @@
 sxhkd &
 nitrogen --restore &
 #xwinwrap -g 1920x1080 -ov -- mpv -wid WID ~/pic/anim-pixel-art/8-bit-waterfall-night-pixel-moewalls.com.mp4 &
-dbus-run-session pipewire &
+#dbus-run-session pipewire &
 wireplumber &
 ~/scripts/keyboard-reset.sh &
 xsetroot -cursor_name left_ptr &
