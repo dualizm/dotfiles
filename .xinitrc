@@ -1,1 +1,1 @@
-exec stumpwm
+exec bspwm
