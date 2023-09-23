@@ -9,6 +9,50 @@
 # | ]]
 # |================================================================|
 
+# | INIT |=========================================================|
+# |================================================================|
+# If not running interactively, don't do anything
+[[ $- != *i* ]] && return
+
+# export
+export TERM="xterm-256color"
+export VISUAL="nvim"
+export EDITOR="vi"
+
+# set vi mode
+set -o vi
+bind -m vi-command 'Control-l: clear-screen'
+bind -m vi-insert 'Control-l: clear-screen'
+
+# generalized commands for different Linux
+if [[ -f /etc/os-release ]]; then
+  system_id=$(grep "^ID=" /etc/os-release | cut -d'=' -f2)
+  case $system_id in
+  "debian")
+    system_special=" "
+    system_packager="apt"
+    system_install="install"
+    system_search="search"
+    system_remove="remove"
+    ;;
+  "void")
+    system_special="-"
+    system_packager="xbps"
+    system_install="install"
+    system_search="query"
+    system_remove="remove"
+    ;;
+  "manjaro")
+    system_special=" "
+    system_packager="pacman"
+    system_install="-Sy"
+    system_search="-Ss"
+    system_remove="-R"
+    ;;
+   esac
+fi
+# |================================================================|
+
 # | COLOR VARIABLE |===============================================|
 # |================================================================|
 # | Black        0;30     Dark Gray     1;30
@@ -41,45 +85,41 @@ CL_END="\[\e[0m\]"
 
 # |================================================================|
 
-# | INIT |=========================================================|
+# | DEFUN |========================================================|
 # |================================================================|
-# If not running interactively, don't do anything
-[[ $- != *i* ]] && return
-
-if [[ -f /etc/os-release ]]; then
-  system_id=$(grep "^ID=" /etc/os-release | cut -d'=' -f2)
-  case $system_id in
-  "debian")
-    system_special=" "
-    system_packager="apt"
-    system_install="install"
-    system_search="search"
-    ;;
-  
-  "void")
-    system_special="-"
-    system_packager="xbps"
-    system_install="install"
-    system_search="query"
-    ;;
-  "gentoo")
-    system_special=" "
-    system_packager="emerge"
-    system_install="-av"
-    system_search="-S"
-    ;;
-  esac
-fi
 # |================================================================|
 
 # | ALIAS |========================================================|
 # |================================================================|
 
-alias ls="ls --color=auto"
+# system vars
 alias ,i="sudo ${system_packager}${system_special}${system_install}"
 alias ,s="${system_packager}${system_special}${system_search}"
 alias ,q="exit"
-alias git-defp="git add . && git commit -m \"[upd]\" && git push"
+alias ,r="sudo ${system_packager}${system_special}${system_remove}"
+alias ,e="${VISUAL}"
+
+# save your life
+alias cp="cp -i"
+alias mv="mv -i"
+alias rm="rm -i"
+
+# lsias
+alias ls="ls --color=auto"
+alias la="ls -a --color=auto"
+alias ll="ls -la --color=auto"
+
+# psias
+alias psa="ps auxf"
+alias psgrep="ps aux | grep -v grep | grep -i -e VSZ -e"
+alias psmem='ps auxf | sort -nr -k 4'
+alias pscpu='ps auxf | sort -nr -k 3'
+
+# grepias
+alias grep="grep --color=auto"
+
+# gitias 
+alias git-def="git add . && git commit -m \"[upd]\" && git push"
 # |================================================================|
 
 # | PROMPT |=======================================================|
