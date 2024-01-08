@@ -18,6 +18,7 @@
 export TERM="xterm-256color"
 export VISUAL="nvim"
 export EDITOR="vi"
+export PATH="/home/$USER/scripts:$PATH"
 
 # set vi mode
 set -o vi
@@ -35,14 +36,14 @@ if [[ -f /etc/os-release ]]; then
     system_search="search"
     system_remove="remove"
     ;;
-  "void")
-    system_special="-"
-    system_packager="xbps"
-    system_install="install"
-    system_search="query"
-    system_remove="remove"
+  "gentoo")
+    system_special=" "
+    system_packager="emerge"
+    system_install="-av"
+    system_search="-s"
+    system_remove="-W"
     ;;
-  "manjaro")
+  "endeavouros")
     system_special=" "
     system_packager="pacman"
     system_install="-Sy"
