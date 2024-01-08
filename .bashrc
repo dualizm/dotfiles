@@ -88,6 +88,7 @@ CL_END="\[\e[0m\]"
 
 # | DEFUN |========================================================|
 # |================================================================|
+
 # |================================================================|
 
 # | ALIAS |========================================================|
@@ -110,6 +111,14 @@ alias ls="ls --color=auto"
 alias la="ls -a --color=auto"
 alias ll="ls -la --color=auto"
 
+# mkdir
+alias mkdir="mkdir -p"
+
+# cdias
+alias cd..="cd .."
+alias ..="cd .."
+alias ...="cd ../.."
+
 # psias
 alias psa="ps auxf"
 alias psgrep="ps aux | grep -v grep | grep -i -e VSZ -e"
@@ -126,10 +135,11 @@ alias git-def="git add . && git commit -m \"[upd]\" && git push"
 # | PROMPT |=======================================================|
 # |================================================================|
 username="${CL_LGREEN}\u@\h${CL_END}"
-way="${CL_GREEN}[\w]${CL_END}"
+host="\h${CL_END}"
+way="${CL_GREEN}\w${CL_END}"
 rights="${CL_RED}\$${CL_END}"
 
-PS1="| ${username} ${way} \n| ${rights}> "
+PS1="[${username}] ${way} ${rights}> "
 # |================================================================|
 
 # | LS CONFIG |====================================================|
