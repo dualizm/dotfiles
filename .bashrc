@@ -27,34 +27,34 @@ bind -m vi-insert 'Control-l: clear-screen'
 
 # generalized commands for different Linux
 if [[ -f /etc/os-release ]]; then
-  system_id=$(grep "^ID=" /etc/os-release | cut -d'=' -f2)
-  case $system_id in
-  "debian")
-    system_special=" "
-    system_packager="apt"
-    system_install="install"
-    system_search="search"
-    system_remove="remove"
-    ;;
-  "gentoo")
-    system_special=" "
-    system_packager="emerge"
-    system_install="-av"
-    system_search="-s"
-    system_remove="-W"
-    ;;
-  "endeavouros")
-    system_special=" "
-    system_packager="pacman"
-    system_install="-Sy"
-    system_search="-Ss"
-    system_remove="-R"
-    ;;
-   esac
+    system_id=$(grep "^ID=" /etc/os-release | cut -d'=' -f2)
+    case $system_id in
+        "debian")
+            system_special=" "
+            system_packager="apt"
+            system_install="install"
+            system_search="search"
+            system_remove="remove"
+        ;;
+        "gentoo")
+            system_special=" "
+            system_packager="emerge"
+            system_install="-av"
+            system_search="-s"
+            system_remove="-W"
+        ;;
+        "endeavouros")
+            system_special=" "
+            system_packager="pacman"
+            system_install="-Sy"
+            system_search="-Ss"
+            system_remove="-R"
+        ;;
+    esac
 fi
 # |================================================================|
 
-# | COLOR VARIABLE |===============================================|
+# | COLOR PICK |===================================================|
 # |================================================================|
 # | Black        0;30     Dark Gray     1;30
 # | Red          0;31     Light Red     1;31
@@ -64,30 +64,38 @@ fi
 # | Purple       0;35     Light Purple  1;35
 # |================================================================|
 
-CL_BLACK="\[\e[0;30m\]" 
-CL_RED="\[\e[0;31m\]" 
-CL_GREEN="\[\e[0;32m\]" 
-CL_ORANGE="\[\e[0;33m\]" 
-CL_BLUE="\[\e[0;34m\]" 
-CL_PURPLE="\[\e[0;35m\]" 
-CL_CYAN="\[\e[0;36m\]" 
-CL_LGRAY="\[\e[037m\]"
+fmt_color_code() # 1 = color number
+{
+  echo "\[\e[${1}m\]"
+}
 
-CL_DGRAY="\[\e[1;30m\]"
-CL_LRED="\[\e[1;31m\]"
-CL_LGREEN="\[\e[1;32m\]"
-CL_YELLOW="\[\e[1;33m\]"
-CL_LBLUE="\[\e[1;34m\]"
-CL_LPURPLE="\[\e[1;35m\]"
-CL_LCYAN="\[\e[1;36m\]"
-CL_WHITE="\[\e[1;37m\]"
+color_code() # 1 = color literal
+{
+    case $1 in
+        "black")        echo $(fmt_color_code "0;30");;
+        "red")          echo $(fmt_color_code "0;31");;
+        "green")        echo $(fmt_color_code "0;32");;
+        "orange")       echo $(fmt_color_code "0;33");;
+        "blue")         echo $(fmt_color_code "0;34");;
+        "purple")       echo $(fmt_color_code "0;35");;
+        "cyan")         echo $(fmt_color_code "0;36");;
+        "light-gray")   echo $(fmt_color_code "037");;
+        "dark-gray")    echo $(fmt_color_code "1;30");;
+        "light-red")    echo $(fmt_color_code "1;31");;
+        "light-green")  echo $(fmt_color_code "1;32");;
+        "yellow")       echo $(fmt_color_code "1;33");;
+        "light-blue")   echo $(fmt_color_code "1;34");;
+        "light-purple") echo $(fmt_color_code "1;35");;
+        "light-cyan")   echo $(fmt_color_code "1;36");;
+        "white")        echo $(fmt_color_code "1;37");;
+        "end")          echo $(fmt_color_code "0");;
+    esac
+}
 
-CL_END="\[\e[0m\]"
-
-# |================================================================|
-
-# | DEFUN |========================================================|
-# |================================================================|
+fmt_color() # 1 = color literal, 2 = text
+{
+  echo "$(color_code "$1")$2$(color_code "end")"
+}
 
 # |================================================================|
 
@@ -128,18 +136,17 @@ alias pscpu='ps auxf | sort -nr -k 3'
 # grepias
 alias grep="grep --color=auto"
 
-# gitias 
-alias git-def="git add . && git commit -m \"[upd]\" && git push"
+# gitias
+alias git-dp="git add . && git commit -m \"[upd]\" && git push"
 # |================================================================|
 
 # | PROMPT |=======================================================|
 # |================================================================|
-username="${CL_LGREEN}\u@\h${CL_END}"
-host="\h${CL_END}"
-way="${CL_GREEN}\w${CL_END}"
-rights="${CL_RED}\$${CL_END}"
+username=$(fmt_color "light-green" "\u@\h")
+way=$(fmt_color "green" "\w")
+rights=$(fmt_color "red" "\$")
 
-PS1="[${username}] ${way} ${rights}> "
+PS1="[${username}]${way}${rights}> "
 # |================================================================|
 
 # | LS CONFIG |====================================================|
