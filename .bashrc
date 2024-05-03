@@ -2,7 +2,7 @@
 
 # |================================================================|
 # | Filename: .bashrc
-# | Author: ezeire
+# | Author: dualizm
 # | Description:
 # | [[
 # |	Config file for bash
@@ -19,6 +19,8 @@ export TERM="xterm-256color"
 export VISUAL="nvim"
 export EDITOR="vi"
 export PATH="/home/$USER/scripts:$PATH"
+export GOPATH="$HOME/go"
+export PATH="$GOPATH/bin:$PATH"
 
 # set vi mode
 set -o vi
@@ -95,6 +97,26 @@ color_code() # 1 = color literal
 fmt_color() # 1 = color literal, 2 = text
 {
   echo "$(color_code "$1")$2$(color_code "end")"
+}
+
+# |================================================================|
+
+# | DEFUN |========================================================|
+# |================================================================|
+
+cd_and_show() # 1 = path to cd
+{
+  cd "$1"
+  ls_output=$(ls --color=auto)
+  ls_limit=100
+  ls_size=${#ls_output}
+
+  if [[ "$ls_size" -gt "$ls_limit" ]]; then
+    sub_ls=${ls_output:0:$ls_limit}
+    printf "$sub_ls\n...\n"
+  else
+    echo "$ls_output"
+  fi
 }
 
 # |================================================================|
