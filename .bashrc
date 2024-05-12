@@ -29,8 +29,8 @@ bind -m vi-insert 'Control-l: clear-screen'
 
 # generalized commands for different Linux
 if [[ -f /etc/os-release ]]; then
-    system_id=$(grep "^ID=" /etc/os-release | cut -d'=' -f2)
-    case $system_id in
+    SYSTEM_ID=$(grep "^ID=" /etc/os-release | cut -d'=' -f2)
+    case $SYSTEM_ID in
         "debian")
             system_special=" "
             system_packager="apt"
@@ -107,18 +107,32 @@ fmt_color() # 1 = color literal, 2 = text
 cd_and_show() # 1 = path to cd
 {
   cd "$1"
-  ls_output=$(ls --color=auto)
-  ls_limit=100
-  ls_size=${#ls_output}
+  local ls_output=$(ls --color=auto)
+  local ls_limit=100
+  local ls_size=${#ls_output}
 
   if [[ "$ls_size" -gt "$ls_limit" ]]; then
-    sub_ls=${ls_output:0:$ls_limit}
+    local sub_ls=${ls_output:0:$ls_limit}
     printf "$sub_ls\n...\n"
   else
     echo "$ls_output"
   fi
 }
 
+short_path() 
+{
+  local way=$(pwd)
+  local way_limit=30
+  local way_size=${#way}
+  if [[ "$way_size" -gt "$way_limit" ]]; then
+    local p1=$(basename "$way")
+    local p2=$(basename $(dirname "$way"))
+    local pr=$(pwd | cut -f 1,2 -d "/")
+    echo "$pr/.../$p2/$p1"
+  else
+    echo "$way"
+  fi
+}
 # |================================================================|
 
 # | ALIAS |========================================================|
@@ -164,11 +178,12 @@ alias git-dp="git add . && git commit -m \"[upd]\" && git push"
 
 # | PROMPT |=======================================================|
 # |================================================================|
-username=$(fmt_color "light-green" "\u@\h")
-way=$(fmt_color "green" "\w")
-rights=$(fmt_color "red" "\$")
+USERNAME=$(fmt_color "light-green" "\u@\h")
+WAY=$(fmt_color "green" "\w")
+RIGHTS=$(fmt_color "red" "\$")
+PROMPT_DIRTRIM=2
 
-PS1="[${username}]${way}${rights}> "
+PS1="[${USERNAME}]${WAY}${RIGHTS}> "
 # |================================================================|
 
 # | LS CONFIG |====================================================|

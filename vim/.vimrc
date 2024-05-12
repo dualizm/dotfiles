@@ -34,7 +34,7 @@
     set wildmode=longest:list,full
     set termguicolors
     set term=xterm-256color
-    colorscheme koehler
+    colorscheme sorbet
 " ============================================]
 
 " [SEARCH]
@@ -70,12 +70,12 @@
    "map  <F4> <Esc>:browse tabnew<CR>
    "
    "" [TAB MOVE PREV] "
-   "imap <F5> <Esc>:tabprev <CR>i
-   "map  <F5> <Esc>:tabprev <CR>
-   "
-   "" [TAB MOVE NEXT] "
-   "imap <F6> <Esc>:tabnext <CR>i
-   "map  <F6> :tabnext <CR>
+   inoremap <F5> <Esc>:bp <CR>i
+   noremap  <F5> <Esc>:bp <CR>
+   
+   " [TAB MOVE NEXT] "
+   inoremap <F6> <Esc>:bn <CR>i
+   noremap  <F6> :bn <CR>
 
 
    " inoremap <tab> <c-r>=InsertTabWrapper ("forward")<cr>
