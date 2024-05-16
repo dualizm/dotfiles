@@ -133,6 +133,33 @@ short_path()
     echo "$way"
   fi
 }
+
+random_color() # 1 = number color
+{
+  case $1 in
+    1)  echo "black";;
+    2)  echo "red";;
+    3)  echo "green";;
+    4)  echo "orange";;
+    5)  echo "blue";;
+    6)  echo "purple";;
+    7)  echo "cyan";;
+    8)  echo "light-gray";;
+    9)  echo "dark-gray";;
+    10) echo "light-red";;
+    11) echo "light-green";;
+    12) echo "yellow";;
+    13) echo "light-blue";;
+    14) echo "light-purple";;
+    15) echo "light-cyan";;
+    16) echo "white";;
+  esac
+}
+
+fmt_random_color() # text
+{
+  echo "$(fmt_color $(random_color $((1 + $RANDOM % 16))) $1)"
+}
 # |================================================================|
 
 # | ALIAS |========================================================|
@@ -178,12 +205,13 @@ alias git-dp="git add . && git commit -m \"[upd]\" && git push"
 
 # | PROMPT |=======================================================|
 # |================================================================|
-USERNAME=$(fmt_color "light-green" "\u@\h")
+# USERNAME=$(fmt_color "light-green" "\u@\h")
 WAY=$(fmt_color "green" "\w")
 RIGHTS=$(fmt_color "red" "\$")
+DELIM="$(fmt_random_color ")")$(fmt_random_color ")")$(fmt_random_color ")")"
 PROMPT_DIRTRIM=2
 
-PS1="[${USERNAME}]${WAY}${RIGHTS}> "
+PS1="${WAY}${RIGHTS}${DELIM} "
 # |================================================================|
 
 # | LS CONFIG |====================================================|
