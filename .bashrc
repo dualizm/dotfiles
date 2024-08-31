@@ -201,6 +201,10 @@ alias grep="grep --color=auto"
 
 # gitias
 alias git-dp="git add . && git commit -m \"[upd]\" && git push"
+
+# wineias
+alias gwr="DRI_PRIME=1 wine"
+
 # |================================================================|
 
 # | PROMPT |=======================================================|
