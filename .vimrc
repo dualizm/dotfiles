@@ -34,7 +34,8 @@
     set wildmode=longest:list,full
     set termguicolors
     set term=xterm-256color
-    colorscheme sorbet
+    set background=dark
+    colorscheme habamax
 " ============================================]
 
 " [SEARCH]

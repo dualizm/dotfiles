@@ -1,11 +1,9 @@
-# .bashrc
-
 # |================================================================|
 # | Filename: .bashrc
 # | Author: dualizm
 # | Description:
 # | [[
-# |	Config file for bash
+# |	  Config file for bash
 # | ]]
 # |================================================================|
 
@@ -16,9 +14,13 @@
 
 # export
 export TERM="xterm-256color"
-export VISUAL="nvim"
-export EDITOR="vi"
+export VISUAL="gvim"
+export EDITOR="vim"
+
+# add scripts path
 export PATH="/home/$USER/scripts:$PATH"
+
+# add golang path
 export GOPATH="$HOME/go"
 export PATH="$GOPATH/bin:$PATH"
 
@@ -37,6 +39,7 @@ if [[ -f /etc/os-release ]]; then
             system_install="install"
             system_search="search"
             system_remove="remove"
+            system_clear="autoremove"
         ;;
         "gentoo")
             system_special=" "
@@ -44,13 +47,7 @@ if [[ -f /etc/os-release ]]; then
             system_install="-av"
             system_search="-s"
             system_remove="-W"
-        ;;
-        "endeavouros")
-            system_special=" "
-            system_packager="pacman"
-            system_install="-Sy"
-            system_search="-Ss"
-            system_remove="-R"
+            system_clear="-ac"
         ;;
     esac
 fi
@@ -158,7 +155,7 @@ random_color() # 1 = number color
 
 fmt_random_color() # text
 {
-  echo "$(fmt_color $(random_color $((1 + $RANDOM % 16))) $1)"
+  echo "$(fmt_color $(random_color $((2 + $RANDOM % 16))) $1)"
 }
 # |================================================================|
 
@@ -170,7 +167,8 @@ alias ,i="sudo ${system_packager}${system_special}${system_install}"
 alias ,s="${system_packager}${system_special}${system_search}"
 alias ,q="exit"
 alias ,r="sudo ${system_packager}${system_special}${system_remove}"
-alias ,e="${VISUAL}"
+alias ,rc="sudo ${system_packager}${system_special}${system_clear}"
+alias ,e="${EDITOR}"
 
 # save your life
 alias cp="cp -i"
@@ -203,7 +201,10 @@ alias grep="grep --color=auto"
 alias git-dp="git add . && git commit -m \"[upd]\" && git push"
 
 # wineias
-alias gwr="DRI_PRIME=1 wine"
+alias dpw="DRI_PRIME=1 wine"
+
+# lispas
+alias sbcl="rlwrap sbcl"
 
 # |================================================================|
 
