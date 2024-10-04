@@ -35,7 +35,7 @@
     set termguicolors
     set term=xterm-256color
     set background=dark
-    colorscheme habamax
+    colorscheme torte
 " ============================================]
 
 " [SEARCH]

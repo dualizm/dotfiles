@@ -17,12 +17,15 @@ export TERM="xterm-256color"
 export VISUAL="gvim"
 export EDITOR="vim"
 
-# add scripts path
-export PATH="/home/$USER/scripts:$PATH"
+# add local bin path
+export PATH="/home/$USER/.local/bin:$PATH"
 
 # add golang path
 export GOPATH="$HOME/go"
 export PATH="$GOPATH/bin:$PATH"
+
+# add rust path
+. "$HOME/.cargo/env"
 
 # set vi mode
 set -o vi
@@ -155,7 +158,7 @@ random_color() # 1 = number color
 
 fmt_random_color() # text
 {
-  echo "$(fmt_color $(random_color $((2 + $RANDOM % 16))) $1)"
+  echo "$(fmt_color $(random_color $((1 + $RANDOM % 16))) $1)"
 }
 # |================================================================|
 
