@@ -25,7 +25,9 @@ export GOPATH="$HOME/go"
 export PATH="$GOPATH/bin:$PATH"
 
 # add rust path
-. "$HOME/.cargo/env"
+if [[ -f "$HOME/.cargo" ]]; then
+  . "$HOME/.cargo/env"
+fi
 
 # set vi mode
 set -o vi
@@ -207,7 +209,7 @@ alias git-dp="git add . && git commit -m \"[upd]\" && git push"
 alias dpw="DRI_PRIME=1 wine"
 
 # lispas
-alias sbcl="rlwrap sbcl"
+alias sbcl="sbcl"
 
 # |================================================================|
 

@@ -1,1 +1,1 @@
-exec awesome
+exec /home/dua/dwmstart.sh
